@@ -16,8 +16,8 @@
 	Time take to solve: 1.5 hrs
 
 	Items looked up:
-		- Multidimensional Vector initialization
-		- Integer to String conversion
+	- Multidimensional Vector initialization
+	- Integer to String conversion
 
 	Notes:
 	[0][x][ ][ ]
@@ -35,21 +35,21 @@
 	[ ][ ][ ][ ][ ][ ][ ][ ]
 
 	Loop {
-		0. If at end, stop
-		1. Robot check if it can go right
-			if so, move right
-		2. If not, robot check if it can go down
-			if so, move down
-		3. If not, go back and do opposite step
+	0. If at end, stop
+	1. Robot check if it can go right
+	if so, move right
+	2. If not, robot check if it can go down
+	if so, move down
+	3. If not, go back and do opposite step
 	}
 
 	Assumptions:
-		- Always starting at 0,0
-		- Always at least one path
-		- Format:
-			0's for all empty spaces
-			1's for all robot movements
-			-1's for all obsticles
+	- Always starting at 0,0
+	- Always at least one path
+	- Format:
+	0's for all empty spaces
+	1's for all robot movements
+	-1's for all obsticles
  */
 
 #include <vector>
@@ -58,18 +58,18 @@
 
 using namespace std;
 
-void robotMaze(vector< vector<char> > &maze);
-char robotMaze(vector< vector<char> > &maze, int x, int y);
-void printMaze(vector< vector<char> > &maze);
+void robotMaze(vector<vector<char> > &maze);
+char robotMaze(vector<vector<char> > &maze, int x, int y);
+void printMaze(vector<vector<char> > &maze);
 
-static const char OBSTACLE = 'X';
+static const char OBSTACLE = '~';
 static const char BLANK = ' ';
-static const char PATH = 'O';
+static const char PATH = 'X';
 
-int main()
-{
+int main() {
+
 	// Initializes maze1
-	vector< vector<char> > maze1(4, vector<char>(4, BLANK));
+	vector<vector<char> > maze1(4, vector<char>(4, BLANK));
 	maze1[0][0] = PATH;
 	maze1[0][1] = OBSTACLE;
 	maze1[1][3] = OBSTACLE;
@@ -81,7 +81,7 @@ int main()
 	robotMaze(maze1);
 
 	// Initializes maze2
-	vector< vector<char> > maze2(8, vector<char>(8, BLANK));
+	vector<vector<char> > maze2(8, vector<char>(8, BLANK));
 	maze2[0][0] = PATH;
 	maze2[0][1] = OBSTACLE;
 	maze2[1][3] = OBSTACLE;
@@ -102,8 +102,7 @@ int main()
 
 // Solves the maze with a robot only able to move right and down
 // Preconditions:
-void robotMaze(vector< vector<char> > &maze)
-{
+void robotMaze(vector<vector<char> > &maze) {
 	if (robotMaze(maze, 0, 0) == PATH) {
 		cout << "Result:" << endl;
 		printMaze(maze);
@@ -114,8 +113,8 @@ void robotMaze(vector< vector<char> > &maze)
 
 // Completes the entered maze
 //	Returns: PATH if end is found or move made, NULL if invalid option
-char robotMaze(vector< vector<char> > &maze, int x, int y)
-{
+char robotMaze(vector<vector<char> > &maze, int x, int y) {
+
 	// Base Case
 	// 0. If at end, stop
 	if (x + 1 == (int) maze[y].size() && y + 1 == (int) maze.size()) {
@@ -124,7 +123,7 @@ char robotMaze(vector< vector<char> > &maze, int x, int y)
 
 	// General Case
 	// 1. Robot check if it can go right(wall and obstacle)
-	if (x + 1 < (int) maze[y].size() && maze[y][x+1] != OBSTACLE) {
+	if (x + 1 < (int) maze[y].size() && maze[y][x + 1] != OBSTACLE) {
 		maze[y][x + 1] = PATH;
 		if (robotMaze(maze, x + 1, y) == PATH) {
 			return PATH;
@@ -150,8 +149,7 @@ char robotMaze(vector< vector<char> > &maze, int x, int y)
 }
 
 // Prints out the current maze
-void printMaze(vector< vector<char> > &maze)
-{
+void printMaze(vector<vector<char> > &maze) {
 	string val;
 	for (int i = 0; i < (int) maze.size(); i++) {
 		for (int j = 0; j < (int) maze[i].size(); j++) {
